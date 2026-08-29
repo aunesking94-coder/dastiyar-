@@ -1,0 +1,5 @@
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn org.conscrypt.**
+-dontwarn android.databinding.**
+-keep class com.dastiyar.app.data.** { *; }
