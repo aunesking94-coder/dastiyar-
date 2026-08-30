@@ -25,7 +25,28 @@ jobs:
           gradle-version: '8.11.1'
 
       - name: ساخت APK دیباگ
-        run: gradle assembleDebug --no-daemon
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle assembleDebug --no-daemon 2>&1 | tee build.log
+
+      - name: استخراج خطاهای کامپایل
+        if: ${{ failure() }}
+        shell: bash
+        run: |
+          echo "===== خطاها ====="
+          grep -aE "^e: |error:|Unresolved|unresolved reference|What went wrong|> Task .*FAILED|Caused by:|error:|FAILURE:" build.log || true
+          echo "===== انتهای لاگ ====="
+          tail -60 build.log > errors.txt
+          cat errors.txt
+
+      - name: آپلود لاگ خطا
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-errors
+          path: build.log
+          if-no-files-found: ignore
 
       - name: آپلود APK
         uses: actions/upload-artifact@v4
