@@ -8,11 +8,6 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Assessment as FilledAssessment
-import androidx.compose.material.icons.filled.AutoAwesome as FilledAutoAwesome
-import androidx.compose.material.icons.filled.Chat as FilledChat
-import androidx.compose.material.icons.filled.Checklist as FilledChecklist
-import androidx.compose.material.icons.filled.FitnessCenter as FilledFitnessCenter
 import androidx.compose.material.icons.outlined.Assessment
 import androidx.compose.material.icons.outlined.AutoAwesome
 import androidx.compose.material.icons.outlined.Chat
@@ -50,14 +45,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.flow.collectLatest
 
-private data class TabItem(val route: String, val label: String, val icon: ImageVector, val selectedIcon: ImageVector)
+private data class TabItem(val route: String, val label: String, val icon: ImageVector)
 
 private val tabs = listOf(
-    TabItem("today", "امروز", Icons.Outlined.AutoAwesome, FilledAutoAwesome),
-    TabItem("tasks", "کارها", Icons.Outlined.Checklist, FilledChecklist),
-    TabItem("habits", "عادت", Icons.Outlined.FitnessCenter, FilledFitnessCenter),
-    TabItem("chat", "گفتگو", Icons.Outlined.Chat, FilledChat),
-    TabItem("reports", "گزارش", Icons.Outlined.Assessment, FilledAssessment)
+    TabItem("today", "امروز", Icons.Outlined.AutoAwesome),
+    TabItem("tasks", "کارها", Icons.Outlined.Checklist),
+    TabItem("habits", "عادت", Icons.Outlined.FitnessCenter),
+    TabItem("chat", "گفتگو", Icons.Outlined.Chat),
+    TabItem("reports", "گزارش", Icons.Outlined.Assessment)
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -113,7 +108,7 @@ fun DastiyarApp(vm: MainViewModel = viewModel()) {
                         selected = selected,
                         onClick = { navigateTo(nav, tab.route) },
                         icon = {
-                            Icon(if (selected) tab.selectedIcon else tab.icon, contentDescription = tab.label)
+                            Icon(tab.icon, contentDescription = tab.label)
                         },
                         label = { Text(tab.label) },
                         colors = NavigationBarItemDefaults.colors(
