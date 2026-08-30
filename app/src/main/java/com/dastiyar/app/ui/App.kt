@@ -40,6 +40,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -52,11 +53,11 @@ import kotlinx.coroutines.flow.collectLatest
 private data class TabItem(val route: String, val label: String, val icon: ImageVector, val selectedIcon: ImageVector)
 
 private val tabs = listOf(
-    TabItem("today", "امروز", Icons.Outlined.AutoAwesome, Icons.Filled.AutoAwesome),
-    TabItem("tasks", "کارها", Icons.Outlined.Checklist, Icons.Filled.Checklist),
-    TabItem("habits", "عادت", Icons.Outlined.FitnessCenter, Icons.Filled.FitnessCenter),
-    TabItem("chat", "گفتگو", Icons.Outlined.Chat, Icons.Filled.Chat),
-    TabItem("reports", "گزارش", Icons.Outlined.Assessment, Icons.Filled.Assessment)
+    TabItem("today", "امروز", Icons.Outlined.AutoAwesome, FilledAutoAwesome),
+    TabItem("tasks", "کارها", Icons.Outlined.Checklist, FilledChecklist),
+    TabItem("habits", "عادت", Icons.Outlined.FitnessCenter, FilledFitnessCenter),
+    TabItem("chat", "گفتگو", Icons.Outlined.Chat, FilledChat),
+    TabItem("reports", "گزارش", Icons.Outlined.Assessment, FilledAssessment)
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
